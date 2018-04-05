@@ -1,0 +1,67 @@
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script>
+    $(document).ready(function(){
+        el = document.getElementById("activities")
+        el.scrollTop = el.scrollHeight;
+    });
+</script>
+<style>
+    .action {
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        border: solid black;
+        margin: 20px;
+        padding: 20px;
+    }
+    #activities {
+        overflow-y: scroll;
+        display: inline-block;
+        vertical-align: top;
+        margin: 20px;
+        width: 1000px;
+        padding: 10px;
+        height: 100px;
+        font-size: 10pt;
+        border: solid black;
+    }
+    #activities>p {
+        margin: 0px;
+    }
+    .pos {
+        color: green;
+    }
+    .neg {
+        color: red;
+    }
+</style>
+<h3>Your Gold: <%= session[:gold] %></h3>
+<div class="action">
+    <h2>Farm</h2>
+    <h3>(earns 10-20 gold)</h3>
+    <button onclick="window.location.href='/rpg/farm'">Find Gold!</button>
+</div>
+<div class="action">
+    <h2>Cave</h2>
+    <h3>(earns 5-10 gold)</h3>
+    <button onclick="window.location.href='/rpg/cave'">Find Gold!</button>
+</div>
+<div class="action">
+    <h2>House</h2>
+    <h3>(earns 2-5 gold)</h3>
+    <button onclick="window.location.href='/rpg/house'">Find Gold!</button>
+</div>
+<div class="action">
+    <h2>Casino</h2>
+    <h3>(earns/loses 0-50 gold)</h3>
+    <button onclick="window.location.href='/rpg/casino'">Find Gold!</button>
+</div>
+<p>Activities:</p>
+<div id="activities">
+    <% session[:activities].each do |a| %>
+        <p class="<%= a["class"] %>"><%= a["activity"] %></p>
+    <% end %>
+</div>
+<p><button onclick="window.location.href='/rpg/reset'">Reset Gold</button></p>
